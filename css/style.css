@@ -188,6 +188,10 @@ body {
 /*-----------------------------------*\
 #Common element
 \*-----------------------------------*/
+.section {
+  margin-bottom: 16px;
+}
+
 .container {
   max-width: 780px;
   padding: 1rem;
@@ -368,4 +372,144 @@ body {
 
 .logo img {
   width: 150px;
+}
+
+/*-----------------------------------*\
+  #MAIN
+\*-----------------------------------*/
+
+main {
+  height: calc(100vh - 80px);
+  height: calc(100svh - 80px);
+  /* svh 참조 : https://abcdqbbq.tistory.com/104 */
+  overflow: hidden;
+}
+
+article.container {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+  overflow-y: overlay;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  /* 이 경우 최소최대값을 활용하여 웹사이트 브라우저의 크기에 따라 박스 크기가 연동되도록 지정해주는 값이다. */
+}
+
+article.container::before {
+  /* article.container div 태그 앞 부분에 이거 넣으세요라는 뜻 */
+  content: ''; /* ::가 붙는 태그는 content가 default값으로 적용되므로 무조건 적어줘야 한다. */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-image: var(--gradient-1);
+  z-index: 1;
+}
+
+/*-----------------------------------*\
+  #CURRENT WEATHER
+\*-----------------------------------*/
+.current-weather-card .wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.current-weather-card .weather-icon {
+  margin: auto;
+  /* 햇님 아이콘을 중앙으로 정렬 */
+}
+
+.current-weather-card .meta-list {
+  border-top: 1px solid var(--outline);
+  margin-top: 16px;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column; /* 이건 flex의 방향을 세로로 바꿔주는 것. */
+  gap: 12px;
+}
+
+.current-weather-card .meta-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* .current-weather-card .meta-item:not(:last-child) { */
+/* 이렇게 not()을 사용하면 해당 부분은 meta-item에 들어가 있을지라도 예외적으로 적용되지 않는다. */
+/* margin-bottom: 12px; } */ /* 이건 flex-direction 대신 사용할 수 있는 다른 방법인데, 보통 이건 복잡하니 flex-direction, 위에 나타난 방법을 사용하도록 한다. */
+
+.current-weather-card .meta-text {
+  color: var(--on-surface-variant);
+}
+
+/*-----------------------------------*\
+  #FORECAST
+\*-----------------------------------*/
+.forecast-card .title-2 {
+  margin-block-end: 0;
+}
+
+.forecast-card :is(.card-item, .icon-wrapper) {
+  /* .forecast-card의 자식 중에서 .card-item, .icon-wrapper가 있을 경우 모두 같은 속성 적용 */
+  /* 스페이스 있으니까 forecast-card의 자식 중에서 .card-item 또는(,) .icon-wrapper가 있냐? 있으면 적용시켜라. 없으면 하지말고 */
+  display: flex;
+  align-items: center;
+}
+
+.forecast-card .icon-wrapper {
+  gap: 8px;
+}
+
+.forecast-card .icon-wrapper .weather-icon {
+  width: 36px;
+}
+
+.forecast-card .card-item:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.forecast-card .card-item > .label-1 {
+  width: 100%;
+  text-align: right;
+  color: var(--on-surface-variant);
+  font-weight: var(--weight-semiBold);
+}
+
+/*-----------------------------------*\
+  #HIGHLIGHTS
+\*-----------------------------------*/
+.highlights .m-icon {
+  font-size: 3.2rem;
+}
+
+.highlights .highlight-list .title-3 {
+  color: var(--on-surface-variant);
+  margin-bottom: 20px;
+}
+
+.highlights .card-sm {
+  background: var(--black-alpha-10);
+  position: relative;
+}
+
+.highlights .highlight-card :is(.wrapper, .card-list, .card-item) {
+  display: flex;
+  align-items: center;
+}
+
+.highlights .wrapper {
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.highlights .card-list {
+  flex-wrap: wrap;
+}
+
+.highlights .card-item {
+  width: 50%; /* 놀랍다 ! */
 }
