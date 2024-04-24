@@ -354,7 +354,85 @@ body {
 #Header
 \*-----------------------------------*/
 .search-view {
+  display: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--surface);
+  color: var(--on-surface);
+}
+
+.search-wrapper {
+  position: relative;
+  border-bottom: 1px solid var(--outline);
+}
+
+.search-wrapper::before {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 16px;
+  border: 3px solid var(--on-surface);
+  top: 50%;
+  transform: translateY(-50%);
+  border-top-color: transparent; /*사각형 위쪽 부분만 투명하게 뺐어~ */
+  border-radius: var(--radius-circle);
+  animation: loading 0.8s linear infinite; /*간단한 애니메이션을 주는 명령어. loading은 애니메이션에 대한 이름이고 @keyframes 문법을 활용해 이를 정의해주어야 한다. */
   display: none;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+.search-wrapper .search-wrapper > .m-icon {
+  display: none;
+}
+
+.search-wrapper .search-field {
+  height: 80px;
+  line-height: 80px;
+  padding-inline: 56px 16px;
+  outline: none;
+}
+
+.search-wrapper .icon-btn {
+  background: transparent;
+  box-shadow: none;
+}
+
+.search-wrapper .leading-icon {
+  position: absolute;
+  top: 50%;
+  left: 28px;
+  transform: translateY(-50%, -50%);
+}
+
+.search-view .view-list {
+  padding: 8px 0 16px;
+}
+
+.search-view .view-item {
+  position: relative;
+  height: 56px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  padding-inline: 16px 24px;
+}
+
+.search-view .view-item .item-link {
+  position: absolute;
+  inset: 0;
+  box-shadow: none;
 }
 
 .header .btn-primary {
@@ -396,17 +474,17 @@ article.container {
   /* 이 경우 최소최대값을 활용하여 웹사이트 브라우저의 크기에 따라 박스 크기가 연동되도록 지정해주는 값이다. */
 }
 
-article.container::before {
+/* article.container::before {
   /* article.container div 태그 앞 부분에 이거 넣으세요라는 뜻 */
-  content: ''; /* ::가 붙는 태그는 content가 default값으로 적용되므로 무조건 적어줘야 한다. */
-  position: fixed;
+/* content: ''; /* ::가 붙는 태그는 content가 default값으로 적용되므로 무조건 적어줘야 한다. */
+/* position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 40px;
   background-image: var(--gradient-1);
   z-index: 1;
-}
+} */
 
 /*-----------------------------------*\
   #CURRENT WEATHER
@@ -512,4 +590,102 @@ article.container::before {
 
 .highlights .card-item {
   width: 50%; /* 놀랍다 ! */
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.highlights .label-1 {
+  color: var(--on-surface-variant);
+}
+
+.highlights .badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 2px 12px;
+  border-radius: var(--radius-pill);
+  font-weight: var(--weight-semiBold);
+  cursor: help;
+}
+
+.highlights .badge.aqi-1 {
+  background: var(--bg-aqi-1);
+  color: var(--on-bg-aqi-1);
+}
+
+.highlights .badge.aqi-2 {
+  background: var(--bg-aqi-2);
+  color: var(--on-bg-aqi-2);
+}
+
+.highlights .badge.aqi-3 {
+  background: var(--bg-aqi-3);
+  color: var(--on-bg-aqi-3);
+}
+
+.highlights .badge.aqi-4 {
+  background: var(--bg-aqi-4);
+  color: var(--on-bg-aqi-4);
+}
+
+.highlights .badge.aqi-5 {
+  background: var(--bg-aqi-5);
+  color: var(--on-bg-aqi-5);
+}
+
+.highlight-card.two .card-item {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.highlight-card.two .labl-1 {
+  margin-bottom: 4px;
+}
+
+/*—————————————————*\
+  #Hourly Forecast
+\*—————————————————*/
+.slider-container {
+  overflow-x: auto;
+}
+
+.slider-list {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.slider-item {
+  min-width: 110px;
+  flex: 1 1 100%;
+}
+
+.slider-card {
+  text-align: center;
+}
+
+.slider-card .weather-icon {
+  margin: 12px auto;
+}
+
+/*-----------------------------------*\
+  #FOOTER
+\*-----------------------------------*/
+.footer,
+.footer .body-3:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  color: var(--on-surface-variant);
+  text-align: center;
+  gap: 12px 24px;
+  margin: 28px 0;
+}
+
+.footer .body-3:last-child {
 }
