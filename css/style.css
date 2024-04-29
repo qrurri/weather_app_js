@@ -1,7 +1,7 @@
 :root {
-  /*
-  COLOR
- */
+  /* 
+    COLOR
+  */
   --primary: #b5a1e5;
   --on-primary: #100e17;
   --background: #131214;
@@ -26,9 +26,9 @@
   --white-alpha-8: hsla(0, 0%, 100%, 0.08);
   --black-alpha-10: hsla(0, 0%, 0%, 0.1);
 
-  /*
-  GRADIENT
- */
+  /* 
+    GRADIENT
+  */
   --gradient-1: linear-gradient(
     180deg,
     hsla(270, 5%, 7%, 0) 0%,
@@ -42,9 +42,9 @@
     hsl(260, 5%, 12%) 100%
   );
 
-  /*
-  TYPOGRAPHY
- */
+  /* 
+    TYPOGRAPHY
+  */
   --ff-nunito-sans: 'Nunito Sans', sans-serif;
 
   --heading: 5.6rem;
@@ -60,15 +60,15 @@
   --weight-regular: 400;
   --weight-semiBold: 600;
 
-  /*
-   SHADOW
- */
+  /* 
+    SHADOW
+  */
   --shadow-1: 0px 1px 3px hsla(0, 0%, 0%, 0.5);
   --shadow-2: 0px 3px 6px hsla(0, 0%, 0%, 0.4);
 
-  /*
-   BORDER RADIUS
- */
+  /* 
+    BORDER RADIUS
+  */
   --radius-28: 28px;
   --radius-16: 16px;
   --radius-8: 8px;
@@ -76,14 +76,14 @@
   --radius-pill: 500px;
   --radius-circle: 50%;
 
-  /*
-  TRANSITOIN
- */
+  /* 
+    TRANSITOIN
+  */
   --transition-short: 100ms ease;
 }
 
 /*-----------------------------------*\
-#RESET
+  #RESET
 \*-----------------------------------*/
 *,
 *::before,
@@ -176,7 +176,7 @@ body {
 }
 
 /*-----------------------------------*\
-#MATERIAL ICON
+  #MATERIAL ICON
 \*-----------------------------------*/
 @font-face {
   font-family: 'Material Symbols Rounded';
@@ -186,13 +186,14 @@ body {
 }
 
 /*-----------------------------------*\
-#Common element
+  #COMMON ELEMENT
 \*-----------------------------------*/
 .section {
   margin-bottom: 16px;
 }
 
 .container {
+  width: 100%;
   max-width: 780px;
   padding: 1rem;
   margin: auto;
@@ -223,7 +224,7 @@ body {
   width: 48px;
   height: 48px;
   display: grid;
-  place-items: center; /* display가 grid인 상태에서 place-items가 center면 상하좌우가 중앙된다. */
+  place-items: center;
   border-radius: var(--radius-circle);
 }
 
@@ -253,9 +254,8 @@ body {
 }
 
 .has-state:is(:focus, :focus-visible)::before {
-  /* is = 괄호 안에 있는게 있을 때 True, 없을 때 false로 처리하여라. focus는 입력 창 내부에 커서가 깜빡이는 것. 즉 focus가 visible할 때 해당 명령어가 실행된다.*/
   background-color: var(--white-alpha-8);
-  animation: ripple 0.25s ease forwards; /*0.25초동안 ripple effect를 내어라. */
+  animation: ripple 0.25s ease forwards;
 }
 
 @keyframes ripple {
@@ -275,7 +275,7 @@ body {
   max-width: max-content;
   display: flex;
   align-items: center;
-  padding-inline: 16px; /* padding-inline은 좌우 패딩 값만 준다. 상하값만 주려면 padding-block */
+  padding-inline: 16px; /* inline: 좌우, block: 위아래 */
   border-radius: var(--radius-pill);
   gap: 0.5rem;
 }
@@ -322,6 +322,7 @@ body {
 .title-2 {
   font-size: var(--title-2);
   margin-block-end: 12px;
+  /* margin inline reference: https://www.w3schools.com/cssref/css_pr_padding-inline.php */
 }
 
 .title-3 {
@@ -351,16 +352,27 @@ body {
 }
 
 /*-----------------------------------*\
-#Header
+  #HEADER
 \*-----------------------------------*/
 .search-view {
-  display: fixed;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100vh;
   background: var(--surface);
   color: var(--on-surface);
+  z-index: 999;
+  clip-path: circle(4% at calc(100% - 102px) 5%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+}
+
+.search-view.active {
+  opacity: 1;
+  visibility: visible;
+  clip-path: circle(130% at 73% 5%);
 }
 
 .search-wrapper {
@@ -377,9 +389,9 @@ body {
   border: 3px solid var(--on-surface);
   top: 50%;
   transform: translateY(-50%);
-  border-top-color: transparent; /*사각형 위쪽 부분만 투명하게 뺐어~ */
+  border-top-color: transparent;
   border-radius: var(--radius-circle);
-  animation: loading 0.8s linear infinite; /*간단한 애니메이션을 주는 명령어. loading은 애니메이션에 대한 이름이고 @keyframes 문법을 활용해 이를 정의해주어야 한다. */
+  animation: loading 0.8s linear infinite;
   display: none;
 }
 
@@ -392,7 +404,7 @@ body {
   }
 }
 
-.search-wrapper .search-wrapper > .m-icon {
+.search-wrapper > .m-icon {
   display: none;
 }
 
@@ -412,7 +424,7 @@ body {
   position: absolute;
   top: 50%;
   left: 28px;
-  transform: translateY(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .search-view .view-list {
@@ -436,7 +448,6 @@ body {
 }
 
 .header .btn-primary {
-  /* btn-primary 클래스 중 이들이 header의 자식인 경우인 것으로만 한정함. */
   padding-inline: 12px;
 }
 
@@ -444,7 +455,7 @@ body {
 .header .container .header-actions {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* 위아래 중앙값 */
+  align-items: center;
   gap: 1rem;
 }
 
@@ -455,7 +466,6 @@ body {
 /*-----------------------------------*\
   #MAIN
 \*-----------------------------------*/
-
 main {
   height: calc(100vh - 80px);
   height: calc(100svh - 80px);
@@ -471,20 +481,18 @@ article.container {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 20px;
-  /* 이 경우 최소최대값을 활용하여 웹사이트 브라우저의 크기에 따라 박스 크기가 연동되도록 지정해주는 값이다. */
 }
 
-/* article.container::before {
-  /* article.container div 태그 앞 부분에 이거 넣으세요라는 뜻 */
-/* content: ''; /* ::가 붙는 태그는 content가 default값으로 적용되므로 무조건 적어줘야 한다. */
-/* position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40px;
+article.container::before {
+  /* content:"";
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:40px;
   background-image: var(--gradient-1);
-  z-index: 1;
-} */
+  z-index:1; */
+}
 
 /*-----------------------------------*\
   #CURRENT WEATHER
@@ -498,7 +506,6 @@ article.container {
 
 .current-weather-card .weather-icon {
   margin: auto;
-  /* 햇님 아이콘을 중앙으로 정렬 */
 }
 
 .current-weather-card .meta-list {
@@ -506,7 +513,7 @@ article.container {
   margin-top: 16px;
   padding-top: 16px;
   display: flex;
-  flex-direction: column; /* 이건 flex의 방향을 세로로 바꿔주는 것. */
+  flex-direction: column;
   gap: 12px;
 }
 
@@ -516,9 +523,9 @@ article.container {
   align-items: center;
 }
 
-/* .current-weather-card .meta-item:not(:last-child) { */
-/* 이렇게 not()을 사용하면 해당 부분은 meta-item에 들어가 있을지라도 예외적으로 적용되지 않는다. */
-/* margin-bottom: 12px; } */ /* 이건 flex-direction 대신 사용할 수 있는 다른 방법인데, 보통 이건 복잡하니 flex-direction, 위에 나타난 방법을 사용하도록 한다. */
+/* .current-weather-card .meta-item:not(:last-child){
+  margin-bottom:12px;
+} */
 
 .current-weather-card .meta-text {
   color: var(--on-surface-variant);
@@ -533,7 +540,6 @@ article.container {
 
 .forecast-card :is(.card-item, .icon-wrapper) {
   /* .forecast-card의 자식 중에서 .card-item, .icon-wrapper가 있을 경우 모두 같은 속성 적용 */
-  /* 스페이스 있으니까 forecast-card의 자식 중에서 .card-item 또는(,) .icon-wrapper가 있냐? 있으면 적용시켜라. 없으면 하지말고 */
   display: flex;
   align-items: center;
 }
@@ -572,6 +578,11 @@ article.container {
 .highlights .card-sm {
   background: var(--black-alpha-10);
   position: relative;
+  margin-bottom: 20px;
+}
+
+.highlights .card-sm:last-child {
+  margin-bottom: 0;
 }
 
 .highlights .highlight-card :is(.wrapper, .card-list, .card-item) {
@@ -589,7 +600,7 @@ article.container {
 }
 
 .highlights .card-item {
-  width: 50%; /* 놀랍다 ! */
+  width: 50%;
   justify-content: flex-end;
   gap: 4px;
 }
@@ -639,13 +650,13 @@ article.container {
   gap: 8px 16px;
 }
 
-.highlight-card.two .labl-1 {
+.highlight-card.two .label-1 {
   margin-bottom: 4px;
 }
 
-/*—————————————————*\
-  #Hourly Forecast
-\*—————————————————*/
+/*-----------------------------------*\
+  #HOURLY FORECAST
+\*-----------------------------------*/
 .slider-container {
   overflow-x: auto;
 }
@@ -658,7 +669,8 @@ article.container {
 
 .slider-item {
   min-width: 110px;
-  flex: 1 1 100%;
+  /* flex: 1 1 100%; */
+  flex-shrink: 0;
 }
 
 .slider-card {
@@ -688,4 +700,14 @@ article.container {
 }
 
 .footer .body-3:last-child {
+  gap: 6px;
+}
+
+.ani {
+  width: 200px;
+  height: 200px;
+  background: red;
+  animation: scale 0.5s infinite alternate;
+  opacity: 0;
+  visibility: hidden;
 }
