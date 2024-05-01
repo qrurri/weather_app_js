@@ -82,6 +82,15 @@
   --transition-short: 100ms ease;
 }
 
+/* FONT */
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../font/PretendardVariable.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*-----------------------------------*\
   #RESET
 \*-----------------------------------*/
