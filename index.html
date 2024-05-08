@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- js module link -->
+    <script src="js/module.js" type="module"></script>
+    <script src="js/route.js" type="module"></script>
     <script src="js/api.js" type="module"></script>
     <script src="js/app.js" type="module"></script>
     <script src="js/main.js" type="module"></script>
@@ -39,6 +41,7 @@
               name="search"
               placeholder="도시명 검색..."
               class="search-field"
+              data-search-field
             />
 
             <span class="m-icon">search</span>
@@ -48,8 +51,8 @@
             </button>
           </div>
 
-          <div class="search-result">
-            <ul class="view-list">
+          <div class="search-result" data-search-result>
+            <!-- <ul class="view-list">
               <li class="view-item">
                 <span class="m-icon">location_on</span>
                 <div>
@@ -58,7 +61,7 @@
                 </div>
                 <a href="#" class="item-link has-state"></a>
               </li>
-            </ul>
+            </ul> -->
           </div>
         </div>
 

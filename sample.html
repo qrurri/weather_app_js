@@ -1,47 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div class="container">
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
 
-  <div class="ani"></div>
+    <div class="ani"></div>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-    .container{
-      display:flex;
-    }
-    .box{
-      width:33.33%;
-      border:1px solid;
-      height:100px;
-    }
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        display: flex;
+      }
+      .box {
+        width: 33.33%;
+        border: 1px solid;
+        height: 100px;
+      }
 
-    .box:nth-child(2){
-      flex-shrink: 0;
-    }
+      .box:nth-child(2) {
+        flex-shrink: 0;
+      }
 
-    .ani{
-      width:200px;
-      height:200px;
-      background:red;
-      animation: scale 0.5s infinite alternate;
-    }
-
-
-  </style>
-</body>
+      .ani {
+        width: 200px;
+        height: 200px;
+        background: red;
+        animation: scale 0.5s infinite alternate;
+      }
+    </style>
+  </body>
 </html>

@@ -413,6 +413,12 @@ body {
   }
 }
 
+/* search-wrapper의 자식 태그 중에서 searching이라는 클래스를 가질 때 before의 속성 변화를 의미한다. */
+.search-wrapper:has(.searching)::before {
+  display: block;
+  /* has = search라는 클래스(.)를 가지고 있니? 가지고 있다면 display를 block으로 바꾸렴. (=아래 명령어를 실행하렴) */
+}
+
 .search-wrapper > .m-icon {
   display: none;
 }

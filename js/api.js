@@ -1,9 +1,9 @@
 const api_key = 'de902ba20898389bf3b79a41aef5c700';
 
-export const urls = {
+export const url = {
   //endpoint urls
   currentWeather(lat, lon) {
-    return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=matric`;
+    return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`;
   },
   // 백틱을 써야 변수를 결과값 안에 넣는 것이 가능하다.
 
@@ -14,19 +14,13 @@ export const urls = {
 
 /**
  *
- * @param {*} url
- * @param {*} callback
+ * @param {string} url
+ * @param {function} callback
  */
 
-const fetchData = function (url, callback) {
+export const fetchData = function (url, callback) {
   fetch(`${url}&appid=${api_key}`)
     .then((response) => response.json())
     .then((data) => callback(data))
     .catch((error) => console.log(error));
 };
-
-fetchData(urls.geocode('london'), function (locations) {
-  console.log(locations);
-});
-
-//구조분해 할당 야호 ! 너무 재밌는 구조분해 할당 !
