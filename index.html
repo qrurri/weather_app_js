@@ -70,7 +70,7 @@
             <span class="m-icon icon">search</span>
           </button>
 
-          <a href="#" class="btn-primary has-state">
+          <a href="#" class="btn-primary has-state" data-current-location-btn>
             <span class="m-icon">my_location</span>
           </a>
         </div>
@@ -79,42 +79,18 @@
 
     <!-- Main Grid Elements -->
     <main>
-      <article class="container">
+      <article class="container" data-container>
         <div class="content-left">
           <!-- Current Weather Box -->
-          <section class="section current-weather">
-            <div class="card card-lg current-weather-card">
-              <h2 class="title-2 card-title">Now</h2>
-              <div class="wrapper">
-                <p class="heading">
-                  25&deg;<sup>c</sup>
-                  <!-- escape string referrence : http://kor.pe.kr/util/4/charmap2.htm -->
-                </p>
-                <img
-                  src="images/weather_icons/01d.png"
-                  alt="Overcast Clouds"
-                  class="weather-icon"
-                />
-              </div>
-
-              <p class="body-3">Overcast Clouds</p>
-              <ul class="meta-list">
-                <li class="meta-item">
-                  <span class="m-icon">Calendar_today</span>
-                  <p class="title-3 meta-text">Thursday 16, Feb</p>
-                </li>
-                <li class="meta-item">
-                  <span class="m-icon">location_on</span>
-                  <p class="title-3 meta-text">London, GB</p>
-                </li>
-              </ul>
-            </div>
-          </section>
+          <section
+            class="section current-weather"
+            data-current-weather
+          ></section>
 
           <!-- Forecast Box -->
-          <section class="section forecast">
-            <h2 class="title-2" id="forecast-label">5 Days Forecast</h2>
-            <div class="card card-lg forecast-card">
+          <section class="section forecast" data-5-day-forecast>
+            <!-- <h2 class="title-2" id="forecast-label">5 Days Forecast</h2> -->
+            <!-- <div class="card card-lg forecast-card">
               <ul>
                 <li class="card-item">
                   <div class="icon-wrapper">
@@ -197,7 +173,7 @@
                   <p class="label-1">Friday</p>
                 </li>
               </ul>
-            </div>
+            </div> -->
           </section>
         </div>
 

@@ -10,6 +10,10 @@ export const url = {
   geocode(location) {
     return `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5`;
   },
+
+  forecast(lat, lon) {
+    return `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric`;
+  },
 };
 
 /**

@@ -66,3 +66,135 @@ searchField.addEventListener('input', function () {
     }, searchTimeoutDuration); //위에서 searchTimeOutDuration을 500ms로 정의했으므로 그 값이 여기 들어간 거임.
   }
 });
+
+const currentLocationBtn = document.querySelector(
+  '[data-current-location-btn]'
+);
+
+const container = document.querySelector('[data-container');
+
+/**
+ * Render All Weather Data which is fetched from API
+ *
+ * @param {number} lat Latitude
+ * @param {number} lon Longitude
+ */
+
+export const updateWeather = function (lat, lon) {
+  // console.log(lat, lon);
+
+  // 현재 위치 버튼 활성화 토글
+
+  if (window.location.hash === '#/current-location') {
+    currentLocationBtn.setAttribute('disabled', '');
+  } else {
+    currentLocationBtn.removeAttribute('disabled');
+  }
+
+  const currentWeatherSection = document.querySelector(
+    '[data-current-weather]'
+  );
+
+  const forecastSection = document.querySelector('[data-5-day-forecast]');
+
+  currentWeatherSection.innerHTML = '';
+  forecastSection.innerHTML = '';
+
+  //현재 기상 정보 호출
+  fetchData(url.currentWeather(lat, lon), function (data) {
+    const {
+      weather,
+      name,
+      dt: dateUnix,
+      sys: { sunrise: sunriseUnixUTC, sunset: sunsetUnixUTC, country },
+      main: { temp, feels_like, pressure, humidity },
+      visibility,
+      timezone,
+    } = data; //dt: dateUnix - API에서 이미 dt로 정해진 이름을 여기서는 dateUnix로 가져다 쓰겠다는 뜻임. sunrise와 sunset도 동일
+
+    const [{ description, icon }] = weather;
+    const card = document.createElement('div');
+    card.classList.add('card', 'card-lg', 'current-weather-card');
+
+    card.innerHTML = `
+    <h2 class="title-2 card-title">Now</h2>
+              <div class="wrapper">
+                <p class="heading">
+                  ${parseInt(temp)}&deg;<sup>c</sup>
+                </p>
+                <img
+                  src="images/weather_icons/${icon}.png"
+                  alt="Overcast Clouds"
+                  class="weather-icon"
+                />
+              </div>
+
+              <p class="body-3">${description}</p>
+              <ul class="meta-list">
+                <li class="meta-item">
+                  <span class="m-icon">Calendar_today</span>
+                  <p class="title-3 meta-text">${module.getDate(
+                    dateUnix,
+                    timezone
+                  )}</p>
+                </li>
+                <li class="meta-item">
+                  <span class="m-icon">location_on</span>
+                  <p class="title-3 meta-text">${name}, ${country}</p>
+                </li>
+              </ul>
+    `;
+
+    currentWeatherSection.appendChild(card); //appendChild = 앞쪽 요소의 자식요소로 괄호 안의 요소 추가
+  });
+
+  //5일 간 기상 예보
+  fetchData(url.forecast(lat, lon), function (data) {
+    // console.log(data);
+    const {
+      city: { timezone },
+      list: forecastList,
+    } = data;
+
+    forecastSection.innerHTML = `
+    <h2 class="title-2" id="forecast-label">5 Days Forecast</h2>
+    <div class="card card-lg forecast-card">
+      <ul></ul>
+    </div>
+    `;
+
+    for (const [idx, listData] of forecastList.entries()) {
+      if (idx > 4) break; // idx의 값이 4보다 크면 break = 즉 중단하렴.
+      const {
+        weather,
+        wind: { deg: windDirection, speed: windSpeed },
+        main: { temp },
+        dt: dateTimeUnix,
+      } = listData;
+
+      const [{ description, icon }] = weather;
+
+      const forecastList = document.createElement('li');
+      forecastList.classList.add('card-item');
+
+      forecastList.innerHTML = `
+      <div class="icon-wrapper">
+        <img
+          src="images/weather_icons/01n.png"
+          alt="Overcast clouds"
+          class="weather-icon"
+          />
+
+          <span class="span">
+            <p class="title-2">25</p>
+              </span>
+      </div>
+
+      <p class="label-1">17 Feb</p>
+      <p class="label-1">Friday</p>
+      `;
+
+      forecastSection.querySelector('ul').appendChild(forecastList);
+    }
+  });
+};
