@@ -82,15 +82,6 @@
   --transition-short: 100ms ease;
 }
 
-/* FONT */
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('../font/PretendardVariable.woff2') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
 /*-----------------------------------*\
   #RESET
 \*-----------------------------------*/
@@ -413,10 +404,9 @@ body {
   }
 }
 
-/* search-wrapper의 자식 태그 중에서 searching이라는 클래스를 가질 때 before의 속성 변화를 의미한다. */
+/* search-wrapper의 자식 태그 중에서 searcing 이라는 클래스를 가질때 before의 속성 변화 */
 .search-wrapper:has(.searching)::before {
   display: block;
-  /* has = search라는 클래스(.)를 가지고 있니? 가지고 있다면 display를 block으로 바꾸렴. (=아래 명령어를 실행하렴) */
 }
 
 .search-wrapper > .m-icon {
@@ -718,11 +708,27 @@ article.container::before {
   gap: 6px;
 }
 
-.ani {
-  width: 200px;
-  height: 200px;
-  background: red;
-  animation: scale 0.5s infinite alternate;
-  opacity: 0;
-  visibility: hidden;
+/*-----------------------------------*\
+  #LOADING
+\*-----------------------------------*/
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading::before {
+  content: '';
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--on-background);
+  border-radius: 100%;
+  border-top-color: transparent;
+  animation: loading 1s linear infinite;
 }

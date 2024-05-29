@@ -1,45 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-    </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 
-    <div class="ani"></div>
+  <script src="js/app.js" defer></script>
+  <script src="js/sample.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      .container {
-        display: flex;
-      }
-      .box {
-        width: 33.33%;
-        border: 1px solid;
-        height: 100px;
-      }
+  <div class="ani"></div>
+  <div class="yellow"></div>
 
-      .box:nth-child(2) {
-        flex-shrink: 0;
-      }
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+    .container{
+      display:flex;
+    }
+    .box{
+      width:33.33%;
+      border:1px solid;
+      height:100px;
+    }
 
-      .ani {
-        width: 200px;
-        height: 200px;
-        background: red;
-        animation: scale 0.5s infinite alternate;
-      }
-    </style>
-  </body>
+    .box:nth-child(2){
+      flex-shrink: 0;
+    }
+
+    .ani{
+      width:200px;
+      height:200px;
+      background:red;
+      animation: scale 0.5s infinite alternate;
+      opacity:0;
+      visibility: hidden;
+    }
+    .yellow{
+      width:200px;
+      height:200px;
+      background:yellow;
+      animation: scale 0.5s infinite alternate;
+    }
+
+
+  </style>
+
+  
+</body>
 </html>

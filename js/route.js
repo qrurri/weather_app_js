@@ -1,6 +1,6 @@
 import { updateWeather } from './main.js';
 
-const defaultLocation = '#/weather?lat=37.55529&lon=126.9199'; //봄아카데미 위치
+const defaultLocation = '#/weather?lat=37.55549&lon=126.9199'; // 어메이징 농카이 위치
 
 const currentLocation = function () {
   window.navigator.geolocation.getCurrentPosition(
@@ -28,8 +28,8 @@ const routes = new Map([
 ]);
 
 const checkHash = function () {
-  const requestURL = window.location.hash.slice(1); // slice - 글자 자르기. slice함수는 두번째 인자로 넘어온 종료 인덱스가 가리키는 값은 포함하지 않는다. 두번째 인자가 없으면 그 뒤로 오는 나머지를 모두 포함한다.
-  // console.log(requestURL);
+  const requestURL = window.location.hash.slice(1);
+  console.log(requestURL);
   const [route, query] = requestURL.includes
     ? requestURL.split('?')
     : [requestURL, ''];
@@ -39,7 +39,7 @@ const checkHash = function () {
 window.addEventListener('hashchange', checkHash); // https://writingdeveloper.tistory.com/219
 window.addEventListener('load', function () {
   if (!window.location.hash) {
-    window.location.hash = '#/current-location'; // 주소창 끝에 해시태그 지정
+    window.location.hash = '#/current-location';
   } else {
     checkHash();
   }

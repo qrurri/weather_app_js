@@ -1,18 +1,21 @@
-const api_key = 'de902ba20898389bf3b79a41aef5c700';
+const api_key = '30f79eac8f2abb1b72a3955b3e52147d';
 
 export const url = {
-  //endpoint urls
+  // endpoint urls
   currentWeather(lat, lon) {
     return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`;
   },
-  // 백틱을 써야 변수를 결과값 안에 넣는 것이 가능하다.
 
-  geocode(location) {
-    return `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5`;
+  geocode(loca) {
+    return `https://api.openweathermap.org/geo/1.0/direct?q=${loca}&limit=5`;
   },
 
   forecast(lat, lon) {
     return `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric`;
+  },
+
+  airPollution(lat, lon) {
+    return `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&units=metric`;
   },
 };
 
